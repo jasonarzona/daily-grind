@@ -33,7 +33,7 @@ function coffeeTemplate(coffee){
     `
         <p>
             <img src="${coffee.pic}" alt="${coffee.alt}" id="coffee" />
-            <strong class="feature">${coffee.day}'s Coffee Special:</strong> ${coffee.day}'s daily coffee special is <strong class="feature">${coffee.name}</strong>, ${coffee.desc}
+            <strong class="feature">${coffee.day}'s Coffee Special:</strong> ${coffee.day}'s daily coffee special is <strong class="feature">${coffee.name}</strong>. ${coffee.desc}
         </p>
     `;
 
@@ -41,20 +41,17 @@ function coffeeTemplate(coffee){
 }
 
 
-let mydate = new Date();
-let myday = mydate.getDay();
+let myDate = new Date();
+let myDay = myDate.getDay();
 let coffee = "";
 
 //use location object to access querystring (address bar)
-
 const queryString = window.location.search;
 
 //output to console
-
 console.log(queryString);
 
 //separate querystring parameters
-
 const urlParams = new URLSearchParams(queryString);
 
 if(urlParams.has("day")){//data available? show data from url
@@ -65,16 +62,40 @@ if(urlParams.has("day")){//data available? show data from url
 myDay = parseInt(myDay);
 
 
-switch(myday){
+switch(myDay){
 
     case 0:
         today = "Sunday";
+        coffee = {
+            color: "orange", 
+            name: "Caramel Latte",
+            pic: "images/caramel-latte.jpg",
+            alt: "A picture of Caramel Latte",
+            day: "Sunday",
+            desc: `Get a caramel latte on Sunday! It won't disappoint!`
+        }
     break;
     case 1:
         today = "Monday";
+        coffee = {
+            color: "black", 
+            name: "Cold Brew",
+            pic: "images/cold-brew.jpg",
+            alt: "A picture of Cold Brew",
+            day: "Monday",
+            desc: `Start your week off right. Get a cold brew on Monday!`
+        }
     break;
     case 2:
         today = "Tuesday";
+        coffee = {
+            color: "darkblue", 
+            name: "Drip",
+            pic: "images/drip.jpg",
+            alt: "A picture of Drip",
+            day: "Tuesday",
+            desc: `Get some drip on a Tuesday. You need it!`
+        }
     break;
     case 3:
         today = "Wednesday";
@@ -85,24 +106,40 @@ switch(myday){
             alt: "A picture of a Bubble Tea",
             day: "Wednesday",
             desc: `I like me some Bubble Tea!`
-        };
+        }
     break;
     case 4:
         today = "Thursday";
         coffee = {
-            color: "brown", 
+            color: "cyan", 
             name: "Mocha",
             pic: "images/mocha.jpg",
             alt: "A picture of a Mocha",
             day: "Thursday",
             desc: `I love Mocha!`
-        };
+        }
     break;
     case 5:
         today = "Friday";
+        coffee = {
+            color: "red", 
+            name: "Frappaccino",
+            pic: "images/frappaccino.jpg",
+            alt: "A picture of Frappaccino",
+            day: "Friday",
+            desc: `Get a Frappe on Friday to celebrate the weekend!`
+        }
     break;
     case 6:
         today = "Saturday";
+        coffee = {
+            color: "green", 
+            name: "Pumpkin Spice Latte",
+            pic: "images/pumpkin-spice-latte.jpg",
+            alt: "A picture of Pumpkin Spice Latte",
+            day: "Saturday",
+            desc: `Get a pumpkin spice latte on Saturday to add some spice!`
+        }
     break;
 
     default:
@@ -113,6 +150,7 @@ switch(myday){
 // alert(coffeeData);
 
 //load coffee data to page
+console.log(coffee);
 document.getElementById("coffee-cup").innerHTML = coffeeTemplate(coffee);
 document.querySelector("html").style.backgroundColor = coffee.color;
 
